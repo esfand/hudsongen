@@ -121,13 +121,9 @@ abstract class Helper {
   /**
    * Runs the command line shell
    */
-  def main(args: Array[String]): Unit = {
+  def helperMain(jobsDirectory: String): Unit = {
     // TODO should we use Karaf annotations for this stuff?
-    if (args.length < 1) {
-      println("Expected the jobs directory as an argument")
-      System.exit(1)
-    }
-    jobs_dir = new File(args(0))
+    jobs_dir = new File(jobsDirectory)
     configure
 
     generate

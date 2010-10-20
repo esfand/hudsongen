@@ -104,5 +104,20 @@ object Main extends Helper {
     case "trunk" => subversion("smx-components-trunk-fuse", smx_base+"/components/trunk")
     case branch => subversion("smx-"+branch, smx_base+"/components/branches/"+branch)
   }
+  
+  /**
+   * Runs the command line shell
+   */
+  def main(args: Array[String]): Unit = {
+    val jobsDirectory = if(args.length > 0) args(0) else "hudson"
+    helperMain(jobsDirectory)
+    if (args.length < 1) {
+      println("Expected the jobs directory as an argument")
+      System.exit(1)
+    }
+    jobs_dir = new File(args(0))
+    configure
 
+    generate
+  }
 }
